@@ -1,3 +1,15 @@
-numpy==1.26.4
-pandas==2.2.2
 streamlit==1.38.0
+pandas==2.2.2
+numpy==1.26.4
+python-docx==1.1.0
+reportlab==4.2.2
+beautifulsoup4==4.12.3
+requests==2.32.3
+langchain==0.2.11
+langchain-core==0.2.24
+langchain-community==0.2.10
+chromadb==0.5.3
+PyPDF2==3.0.1
+pypdf==4.2.0
+html2text==2020.1.16
+lxml==5.2.1
