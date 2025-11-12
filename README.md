@@ -1,0 +1,1 @@
+# pitchcraft-ai-smart-cold-email-generator
