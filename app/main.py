@@ -8,9 +8,14 @@ from io import BytesIO
 from docx import Document
 from reportlab.pdfgen import canvas
 
+# ✅ Import Chain and Portfolio
 from chains import Chain
 from utils import clean_text, get_page_text, is_category_url, extract_first_job_url
 from portfolio import Portfolio
+
+
+# ✅ Securely load Groq API key from Hugging Face Secrets
+GROQ_API_KEY = st.secrets["GROQ_API_KEY"]
 
 
 # ------------------ CUSTOM PURPLE PREMIUM THEME ------------------
@@ -194,7 +199,6 @@ def create_streamlit_app(chain, portfolio):
 
     st.title("💌 PitchCraft AI — Smart Cold Email Generator")
 
-    # Sidebar: Email History
     with st.sidebar:
         st.header("📜 Saved Email History")
         history = load_history()
@@ -274,14 +278,11 @@ def create_streamlit_app(chain, portfolio):
                 with st.container():
                     st.subheader(f"💼 {job.get('role', 'Job')}")
 
-                    # Incorporate tone directly into job description for AI prompt
                     job_prompt = f"[Tone: {tone}] {job}"
                     skills = job.get("skills", [])
                     links = portfolio.query_links(skills)
 
-                    # Generate email using Chain’s existing method
                     email = chain.write_mail(job_prompt, links)
-
                     subject = generate_subject_line(job)
                     save_to_history(job.get("role", "Unknown Role"), subject, email, tone)
 
